@@ -5,7 +5,7 @@ Use `generate_responses()` to produce and save model outputs.
 Then use `process_outputs()` to apply a custom `test_function` to each response and aggregate results using a `summary_function`.
 
 This tool follows a **MapReduce-style pattern**:
-- The `test_function` acts as the **map step**, processing each individual response file.
+- The `test_function` acts as the **map step**, processing each individual LLM response.
 - The `summary_function` acts as the **reduce step**, combining those results into a final summary.
 
 ```
