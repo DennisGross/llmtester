@@ -12,5 +12,26 @@ This tool follows a **MapReduce-style pattern**:
 pip install git+https://github.com/DennisGross/llmtester.git
 ```
 
-Check out the example in the `examples/` folder.  
+Run dummy example:
+```
+from llmtester.response_generator import *
+from llmtester.process_data import *
+stats = generate_responses(
+        model_name="deepseek-r1:8b",
+        prompt="Hello!",
+        num_responses=3,
+        output_dir="hello_folder",
+        request_timeout=120,
+        verbose=True,            
+        delay_between_calls=0.2,
+        temperature=0.8   # Set randomness level
+    )
+results = process_outputs(
+        folder_path="hello_folder",
+        test_function=analyze_output,
+        summary_function=summarize_results
+    )
+```
+
+Check out more examples in the `examples/` folder.  
 First, run `python test_executions.py` to generate responses, then run `python test_analysis.py` to analyze them.
