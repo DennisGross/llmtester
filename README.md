@@ -15,7 +15,7 @@ pip install git+https://github.com/DennisGross/llmtester.git
 ```
 
 ## Example
-Browse available Ollama models at: [https://ollama.com/library](https://ollama.com/library)
+Copy, paste and run the following dummy example:
 ```
 from llmtester.response_generator import *
 from llmtester.process_data import *
@@ -35,6 +35,8 @@ results = process_outputs(
         summary_function=summarize_results # custom function to summarize results
     )
 ```
+Browse available Ollama models at: [https://ollama.com/library](https://ollama.com/library)
+
 When using custom functions, ensure to have the same function signatures:
 
 ```
