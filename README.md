@@ -8,30 +8,36 @@ This tool follows a **MapReduce-style pattern**:
 - The `test_function` acts as the **map step**, processing each individual LLM response.
 - The `summary_function` acts as the **reduce step**, combining those results into a final summary.
 
+
+## Install
 ```
 pip install git+https://github.com/DennisGross/llmtester.git
 ```
 
-Run dummy example:
+## Example
+Browse available Ollama models at: [https://ollama.com/library](https://ollama.com/library)
 ```
 from llmtester.response_generator import *
 from llmtester.process_data import *
 stats = generate_responses(
-        model_name="deepseek-r1:8b",
+        model_name="gemma3:1b",
         prompt="Hello!",
         num_responses=3,
         output_dir="hello_folder",
         request_timeout=120,
         verbose=True,            
         delay_between_calls=0.2,
-        temperature=0.8   # Set randomness level
+        temperature=0.8
     )
 results = process_outputs(
         folder_path="hello_folder",
-        test_function=analyze_output,
-        summary_function=summarize_results
+        test_function=analyze_output, # custom function to analyze each response
+        summary_function=summarize_results # custom function to summarize results
     )
 ```
+When using custom functions, ensure to have the same function signatures:
 
-Check out more examples in the `examples/` folder.  
-First, run `python test_executions.py` to generate responses, then run `python test_analysis.py` to analyze them.
+```
+def analyze_output(metadata: Dict[str, Any], raw_output: str, thinking: str, response: str) -> Dict[str, Any]
+def summarize_results(results: List[Dict[str, Any]]) -> Dict[str, Any]
+```
