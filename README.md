@@ -35,9 +35,9 @@ results = process_outputs(
         summary_function=summarize_results # custom function to summarize results
     )
 ```
-Browse available Ollama models at: [https://ollama.com/library](https://ollama.com/library)
+Browse available Ollama models at: [https://ollama.com/library](https://ollama.com/library).
 
-When using custom functions, ensure to have the same function signatures:
+When using custom functions (test_function and summary_function), ensure to have the same function signatures:
 
 ```
 def analyze_output(metadata: Dict[str, Any], raw_output: str, thinking: str, response: str) -> Dict[str, Any]
